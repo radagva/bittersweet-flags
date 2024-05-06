@@ -1,5 +1,5 @@
 {
-  "name": "optionset",
+  "name": "bittersweet-flags",
   "version": "1.0.0",
   "description": "This package aims to work with bit flags with ease",
   "main": "dist/index.js",
