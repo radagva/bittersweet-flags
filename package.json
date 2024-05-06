@@ -1,6 +1,6 @@
 {
   "name": "bittersweet-flags",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This package aims to work with bit flags with ease",
   "keywords": [
     "bit",
@@ -13,7 +13,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest --watch",
-    "build": "tsc src/index.ts --outDir build --module ES6",
+    "build": "tsc -d src/index.ts --outDir build --module ES6",
     "prepublish": "tsc"
   },
   "author": "Angel Rada",
