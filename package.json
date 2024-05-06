@@ -1,15 +1,21 @@
 {
   "name": "bittersweet-flags",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This package aims to work with bit flags with ease",
+  "keywords": [
+    "bit",
+    "flags",
+    "bitwise",
+    "flags"
+  ],
   "main": "dist/index.js",
+  "browser": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest --watch",
     "build": "tsc src/index.ts --outDir build --module ES6",
     "prepublish": "tsc"
   },
-  "keywords": [],
   "author": "Angel Rada",
   "license": "MIT",
   "devDependencies": {
