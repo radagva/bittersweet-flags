@@ -6,20 +6,18 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest --watch",
-    "build": "tsc",
+    "build": "tsc src/index.ts --outDir build --module ES6",
     "prepublish": "tsc"
   },
   "keywords": [],
   "author": "Angel Rada",
-  "license": "ISC",
-  "dependencies": {
-    "typescript": "^5.4.5"
-  },
+  "license": "MIT",
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "@tsconfig/node20": "^20.1.4",
     "@types/jest": "^29.5.12",
     "jest": "^29.7.0",
-    "ts-jest": "^29.1.2"
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.4.5"
   }
 }
