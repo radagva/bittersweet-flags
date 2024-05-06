@@ -1,6 +1,6 @@
 {
   "name": "bittersweet-flags",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This package aims to work with bit flags with ease",
   "keywords": [
     "bit",
@@ -8,9 +8,9 @@
     "bitwise",
     "flags"
   ],
-  "main": "dist/index.js",
-  "browser": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "build/index.js",
+  "browser": "build/index.js",
+  "types": "build/index.d.ts",
   "scripts": {
     "test": "jest --watch",
     "build": "tsc -d src/index.ts --outDir build --module ES6",
