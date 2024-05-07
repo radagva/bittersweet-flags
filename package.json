@@ -9,12 +9,11 @@
     "flags"
   ],
   "main": "build/index.js",
-  "browser": "build/index.js",
   "types": "build/index.d.ts",
   "repository": "https://github.com/radagva/bittersweet-flags",
   "scripts": {
     "test": "jest --watch",
-    "build": "tsc -d src/index.ts --outDir build --module ES6",
+    "build": "tsc -d src/index.ts --outDir build",
     "prepublish": "tsc"
   },
   "author": "Angel Rada",
