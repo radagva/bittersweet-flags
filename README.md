@@ -31,7 +31,7 @@ const optionset = createOptionset({
     wed: 1 << 3, // 8
     thu: 1 << 4, // 16
     fri: 1 << 5, // 32
-    sun: 1 << 6  // 64
+    sat: 1 << 6  // 64
   }
 })
 ```
