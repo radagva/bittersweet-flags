@@ -34,7 +34,7 @@ describe('Bitwise operations', () => {
 
   it('Verify if a given flag does not contains one key', () => {
     const flags = weekdays.valueFor(['fri', 'mon', 'sun'])
-    const contains = weekdays.contains(flags, 'sat') 
+    const contains = weekdays.contains(flags, 'sat')
 
     expect(contains).toBe(false)
   })
@@ -83,7 +83,7 @@ describe('Bitwise operations', () => {
 
     expect(Object.keys(conflicts).length).toBe(2)
 
-    const {thu, fri, mon, sun, tue, sat, wed} = conflicts
+    const { thu, fri, mon, sun, tue, sat, wed } = conflicts
 
     expect(thu).toBe(weekdays.valueOf('thu'))
     expect(fri).toBe(weekdays.valueOf('fri'))

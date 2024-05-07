@@ -1,5 +1,6 @@
 type IntersectionReturnType = 'key-value-pairs' | 'key-value-object' | 'keys' | 'values'
 
+const freeze = <T extends Record<string, any>>(obj: T) => Object.freeze(obj);
 
 function createOptionset<T extends Record<string, Record<string, number>>>(sets: T) {
   function factory<
@@ -166,10 +167,10 @@ function createOptionset<T extends Record<string, Record<string, number>>>(sets:
     };
 
     return {
-      origin,
+      origin: freeze(origin),
+      keysDict: freeze(keysDict),
+      keysArray: freeze(keysArray),
       max,
-      keysDict,
-      keysArray,
       labelsFor,
       valueFor,
       valueOf,
