@@ -109,6 +109,6 @@ const incompleteworkingDaysContainsMonAndFri = weekdaybits.containsAll(incomplet
 const workingDaysOneDayStep = weekdaybits.valueFor(['mon', 'wed', 'fri'])
 const intersectionValues = weekdaybits.intersections(workingDays, workingDaysOneDayStep) // [2, 8, 32]
 const intersectionKeys = weekdaybits.intersections(workingDays, workingDaysOneDayStep, 'keys') // ['mon', 'wed', 'fri']
-const intersectionKeyValuePairs = weekdaybits.intersections(workingDays, workingDaysOneDayStep) // [['mon', 2], ['wed', 8], ['fri', 32]]
-const intersectionKeyValueObjects = weekdaybits.intersections(workingDays, workingDaysOneDayStep) // {mon: 2, wed: 8, fri: 32}
+const intersectionKeyValuePairs = weekdaybits.intersections(workingDays, workingDaysOneDayStep, 'key-value-pairs') // [['mon', 2], ['wed', 8], ['fri', 32]]
+const intersectionKeyValueObjects = weekdaybits.intersections(workingDays, workingDaysOneDayStep, 'key-value-object') // {mon: 2, wed: 8, fri: 32}
 ```
