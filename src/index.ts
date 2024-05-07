@@ -119,37 +119,37 @@ function createOptionset<T extends Record<string, Record<string, number>>>(sets:
     /**
      * @description return an array of numbers where the given parameters matches.
      * Each number represents the value of the bit flag
-     * @param from 
-     * @param of 
+     * @param lhs 
+     * @param rhs 
      * @returns 
      */
-    function intersections(from: number, of: number, returning?: 'values'): number[]
+    function intersections(lhs: number, rhs: number, returning?: 'values'): number[]
     /**
      * @description return an array of key,value pairs where the given parameters matches
-     * @param from 
-     * @param of 
+     * @param lhs 
+     * @param rhs 
      * @returns 
      */
-    function intersections(from: number, of: number, returning?: 'key-value-pairs'): [V, number][]
+    function intersections(lhs: number, rhs: number, returning?: 'key-value-pairs'): [V, number][]
     /**
      * @description return an object of key values pairs where the given parameters matches.
      * The key represents the label and the value represents the bit flag
-     * @param from 
-     * @param of 
+     * @param lhs 
+     * @param rhs 
      * @returns 
      */
-    function intersections(from: number, of: number, returning?: 'key-value-object'): Record<V, number>
+    function intersections(lhs: number, rhs: number, returning?: 'key-value-object'): Record<V, number>
     /**
      * @description return an array of strings where the given parameters matches.
      * Each string represents de label of the bit flag
-     * @param from 
-     * @param of 
+     * @param lhs 
+     * @param rhs 
      * @returns 
      */
-    function intersections(from: number, of: number, returning?: 'keys'): V[]
-    function intersections(from: number, of: number, returning: IntersectionReturnType = 'values'): [V, number][] | Record<V, number> | V[] | number[] {
+    function intersections(lhs: number, rhs: number, returning?: 'keys'): V[]
+    function intersections(lhs: number, rhs: number, returning: IntersectionReturnType = 'values'): [V, number][] | Record<V, number> | V[] | number[] {
       const filtered = Object.entries(origin).filter(([_, value]) => {
-        return (from & value) !== 0 && (of & value) !== 0;
+        return (lhs & value) !== 0 && (rhs & value) !== 0;
       })
 
       switch (returning) {
@@ -165,6 +165,10 @@ function createOptionset<T extends Record<string, Record<string, number>>>(sets:
           return filtered.map(([, value]) => value)
       }
     };
+
+    function difference(lhs: number, rhs: number): number[] {
+      return []
+    }
 
     return {
       origin: freeze(origin),
