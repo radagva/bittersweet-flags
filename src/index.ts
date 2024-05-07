@@ -36,7 +36,7 @@ function createOptionset<T extends Record<string, Record<string, number>>>(sets:
 
     /**
      * @description generates a list of keys for the given flag
-     * @param from 
+     * @param from
      * @returns number
      */
     function labelsFor(from: number) {
@@ -57,8 +57,8 @@ function createOptionset<T extends Record<string, Record<string, number>>>(sets:
 
     /**
      * @description Gets the value for an specific key
-     * @param ofKey 
-     * @returns 
+     * @param ofKey
+     * @returns
      */
     function valueOf(key: V) {
       return origin[key]
@@ -66,8 +66,8 @@ function createOptionset<T extends Record<string, Record<string, number>>>(sets:
 
     /**
      * @description checks if an specific key is included into the provided source `value`
-     * @param value 
-     * @param key 
+     * @param value
+     * @param key
      * @returns number
      */
     function contains(from: number, key: W) {
@@ -76,9 +76,9 @@ function createOptionset<T extends Record<string, Record<string, number>>>(sets:
 
     /**
      * @description checks if all the specified keys are included into the `from` flag
-     * @param from 
-     * @param keys 
-     * @returns 
+     * @param from
+     * @param keys
+     * @returns
      */
     function containsAll(from: number, keys: W[]) {
       return keys.map(translateValue).every(key => (from & key) !== 0)
@@ -98,8 +98,8 @@ function createOptionset<T extends Record<string, Record<string, number>>>(sets:
     /**
      * @description Removes a value from a given flag.
      * If the value is not contained by the flag the return value will not change.
-     * @param from 
-     * @param key 
+     * @param from
+     * @param key
      * @returns number
      */
     function remove(from: number, key: W) {
@@ -108,8 +108,8 @@ function createOptionset<T extends Record<string, Record<string, number>>>(sets:
 
     /**
      * @description adds a new value to the given flag, is the value was already added, it will be removed
-     * @param from 
-     * @param key 
+     * @param from
+     * @param key
      * @returns number
      */
     function toggle(from: number, key: W) {
@@ -119,37 +119,37 @@ function createOptionset<T extends Record<string, Record<string, number>>>(sets:
     /**
      * @description return an array of numbers where the given parameters matches.
      * Each number represents the value of the bit flag
-     * @param from 
-     * @param of 
+     * @param lhs
+     * @param rhs
      * @returns 
      */
-    function intersections(from: number, of: number, returning?: 'values'): number[]
+    function intersections(lhs: number, rhs: number, returning?: 'values'): number[]
     /**
      * @description return an array of key,value pairs where the given parameters matches
-     * @param from 
-     * @param of 
+     * @param lhs
+     * @param rhs
      * @returns 
      */
-    function intersections(from: number, of: number, returning?: 'key-value-pairs'): [V, number][]
+    function intersections(lhs: number, rhs: number, returning?: 'key-value-pairs'): [V, number][]
     /**
      * @description return an object of key values pairs where the given parameters matches.
      * The key represents the label and the value represents the bit flag
-     * @param from 
-     * @param of 
+     * @param lhs
+     * @param rhs
      * @returns 
      */
-    function intersections(from: number, of: number, returning?: 'key-value-object'): Record<V, number>
+    function intersections(lhs: number, rhs: number, returning?: 'key-value-object'): Record<V, number>
     /**
      * @description return an array of strings where the given parameters matches.
      * Each string represents de label of the bit flag
-     * @param from 
-     * @param of 
+     * @param lhs
+     * @param rhs
      * @returns 
      */
-    function intersections(from: number, of: number, returning?: 'keys'): V[]
-    function intersections(from: number, of: number, returning: IntersectionReturnType = 'values'): [V, number][] | Record<V, number> | V[] | number[] {
+    function intersections(lhs: number, rhs: number, returning?: 'keys'): V[]
+    function intersections(lhs: number, rhs: number, returning: IntersectionReturnType = 'values'): [V, number][] | Record<V, number> | V[] | number[] {
       const filtered = Object.entries(origin).filter(([_, value]) => {
-        return (from & value) !== 0 && (of & value) !== 0;
+        return (lhs & value) !== 0 && (rhs & value) !== 0;
       })
 
       switch (returning) {
@@ -166,6 +166,63 @@ function createOptionset<T extends Record<string, Record<string, number>>>(sets:
       }
     };
 
+    /**
+      * @description return an array of numbers where the given parameters does not match.
+      * Each number represents the value of the bit flag
+      * @param lhs
+      * @param rhs
+      * @returns 
+      */
+    function difference(lhs: number, rhs: number, returning?: 'values'): number[]
+    /**
+      * @description return an array of strings where the given parameters does not match.
+      * Each string represents de label of the bit flag
+      * @param lhs
+      * @param rhs
+      * @returns 
+      */
+    function difference(lhs: number, rhs: number, returning?: 'keys'): V[]
+    /**
+      * @description return an array of key,value pairs where the given parameters does not match
+      * @param lhs
+      * @param rhs
+      * @returns 
+      */
+    function difference(lhs: number, rhs: number, returning?: 'key-value-pairs'): [V, number][]
+    /**
+      * @description return an object of key values pairs where the given parameters does not match.
+      * The key represents the label and the value represents the bit flag
+      * @param lhs
+      * @param rhs
+      * @returns 
+      */
+    function difference(lhs: number, rhs: number, returning?: 'key-value-object'): Record<V, number>
+    /**
+      * @description return an array of key,value pairs where the given parameters does not match
+      * @param lhs
+      * @param rhs
+      * @returns 
+      */
+    function difference(lhs: number, rhs: number, returning: IntersectionReturnType = 'values'): number[] | V[] | [V, number][] | Record<V, number> {
+      const rhsLabels = labelsFor(rhs)
+      const lhsLabels = labelsFor(lhs)
+      const diff = lhsLabels.filter(label => !rhsLabels.includes(label))
+
+
+      switch (returning) {
+        case 'keys':
+          return diff
+        case 'values':
+          return diff.map(valueOf)
+        case 'key-value-pairs':
+          return diff.map(label => [label, valueOf(label)] as [V, number])
+        case 'key-value-object':
+          return diff.reduce((acc, key) => ({
+            ...acc, [key]: valueOf(key)
+          }), {} as Record<V, number>)
+      }
+    }
+
     return {
       origin: freeze(origin),
       keysDict: freeze(keysDict),
@@ -180,6 +237,7 @@ function createOptionset<T extends Record<string, Record<string, number>>>(sets:
       remove,
       toggle,
       intersections,
+      difference
     };
   };
 
