@@ -166,6 +166,7 @@ function createOptionset<T extends Record<string, Record<string, number>>>(sets:
     };
 
     return {
+      origin,
       max,
       keysDict,
       keysArray,
