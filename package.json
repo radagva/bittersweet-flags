@@ -1,6 +1,6 @@
 {
   "name": "bittersweet-flags",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "This package aims to work with bit flags with ease",
   "keywords": [
     "bit",
@@ -12,7 +12,7 @@
   "types": "build/index.d.ts",
   "repository": "https://github.com/radagva/bittersweet-flags",
   "scripts": {
-    "test": "jest --watch",
+    "test": "jest",
     "build": "tsc -d src/index.ts --outDir build",
     "prepublish": "tsc"
   },
