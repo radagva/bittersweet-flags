@@ -14,7 +14,6 @@ const optionset = createOptionset({
 
 const weekdays = optionset({ of: 'weekdays' })
 const workdays = weekdays.valueFor(['mon', 'tue', 'wed', 'thu', 'fri'])
-const weekends = weekdays.valueFor(['sat', 'sun'])
 
 describe('Bitwise operations', () => {
   it('Can create an optionset for weekdays', () => {
